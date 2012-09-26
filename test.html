@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <style type="text/css">
+      table.tile { 
+        position: relative; 
+        padding: 0; 
+        border-spacing: 0; 
+        border: 0; 
+        border-collapse: collapse; 
+      }
+
+      table.tile th,tr,td { padding: 0; }
+      td { 
+        display: block; 
+        position: relative;
+        width: 32px;
+        height: 32px;
+      }
+
+      td div {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 32px;
+        height: 32px;
+      }
+
+      div.tree {
+        background: url('feat.png') 0 0; 
+      }
+
+      div.blood { 
+        background: url('feat.png') 0 -288;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="feat.css"/>
+    <link rel="stylesheet" type="text/css" href="floor.css"/>
+    <link rel="stylesheet" type="text/css" href="main.css"/>
+    <link rel="stylesheet" type="text/css" href="player.css"/>
+    <link rel="stylesheet" type="text/css" href="wall.css"/>
+    </style>
+  </head>
+  <body>
+    <table class="tile">
+      <tr>
+        <td>
+          <div class="floor floor_grey_dirt"/>
+        </td>
+        <td>
+          <div class="floor floor_pebble"/>
+        </td>
+        <td class="green"><div class="tree"/><div class="blood"/></td>
+        <td class="brown"></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="floor floor_demonic_lightgray_7"/>
+          <div class="player DEMON_WINGS_2"></div>
+          <div class="player DEMON_BODY_5"></div>
+          <div class="player DEMON_HEAD_13"></div>
+        </td>
+        <td class="brown"><div class="tree"></div></td>
+      </tr>
+    </table>
+  </body>
+</html>
