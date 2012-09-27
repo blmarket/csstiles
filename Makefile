@@ -8,4 +8,4 @@ a.out: main.cc
 
 clean:
 	make -C rltiles clean
-	rm a.out
+	rm *.png *.css a.out
