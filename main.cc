@@ -37,7 +37,7 @@ void write_css(const string &type_name,
         fout << "width: " << info.ex - info.sx << "px;\n";
         fout << "height: " << info.ey - info.sy << "px;\n";
 
-        fout << "background: url('" + type_name + ".png') -" << info.sx << " -" << info.sy << ";" << endl;
+        fout << "background-image: url('./" + type_name + ".png') -" << info.sx << " -" << info.sy << ";" << endl;
         fout << "}" << endl;
     }
 
