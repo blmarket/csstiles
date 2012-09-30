@@ -1,0 +1,19 @@
+{
+  "name": "csstiles",
+  "version": "0.0.0",
+  "description": "tile based game tool",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blmarket/csstiles"
+  },
+  "keywords": [
+    "tile",
+    "game"
+  ],
+  "author": "Jeong, Heon",
+  "license": "MIT"
+}
