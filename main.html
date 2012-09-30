@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>mainpage</title>
+
+    <meta charset="utf-8"/>
+
     <style type="text/css">
       table.tile { 
-        position: relative; 
-        padding: 0; 
-        border-spacing: 0; 
-        border: 0; 
+        padding: 0px; 
+        border-spacing: 0px; 
+        border: 0px; 
         border-collapse: collapse; 
       }
 
-      table.tile th,tr,td { padding: 0; }
+      table.tile th,tr,td { padding: 0px; }
+
       td { 
-        display: block; 
+        display: inline-block;
         position: relative;
         width: 32px;
         height: 32px;
@@ -35,10 +39,9 @@
   <body>
     <table class="tile" style="zoom: 3;">
       <tr>
-        <td>
+        <td style="background: red;">
           <div class="floor floor_grey_dirt"></div>
-        </td>
-        <td>
+        </td><td style="background: blue;">
           <div class="floor floor_pebble"></div>
           <div class="feat dngn_tree_2"></div>
           <div class="feat blood"></div>
@@ -50,8 +53,7 @@
           <div class="player demon_wings_2"></div>
           <div class="player demon_body_5"></div>
           <div class="player demon_head_13"></div>
-        </td>
-        <td class="brown"><div class="feat dngn_tree_2"></div></td>
+        </td><td class="brown"><div class="feat dngn_tree_2"></div></td>
       </tr>
     </table>
   </body>
