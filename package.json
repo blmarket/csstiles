@@ -15,5 +15,11 @@
     "game"
   ],
   "author": "Jeong, Heon",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "~1.7.1"
+  },
+  "dependencies": {
+    "express": "~3.0.3"
+  }
 }
