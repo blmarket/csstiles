@@ -12,23 +12,23 @@ using namespace std;
 
 template<typename T> int size(const T &a) { return a.size(); }
 
-ostream& operator<< (ostream& ost, const tile_info &data) {
-    return ost << (int)data.width << " " << (int)data.height << " " << (int)data.offset_x << " " << (int)data.offset_y << " " << data.sx << "," << data.sy << "," << data.ex << "," << data.ey << endl;
-}
-
 template<typename T1, typename T2>
 void write_list(const string &type_name, 
         int begin, int end, 
         const T1 &name_func, const T2 &info_func) {
 
+    cout << '"' << type_name << "\":";
+    cout << "[";
     for(int i=begin;i<end;i++) {
         string name = name_func(i);
         for(int j=0;j<size(name);j++) {
             name[j] = tolower(name[j]);
         }
         if(type_name == name) continue;
-        cout << type_name << " " << name << endl;
+        cout << '"' << name << '"';
+        if(i+1 < end) cout << ',';
     }
+    cout << "]";
 }
 
 void write_main_css(void) {
@@ -58,10 +58,12 @@ void write_feat_css(void) {
 
 int main(void)
 {
+    cout << "{";
     write_main_css();
     write_player_css();
     write_floor_css();
     write_wall_css();
     write_feat_css();
+    cout << "}";
     return 0;
 }

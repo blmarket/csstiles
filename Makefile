@@ -1,9 +1,11 @@
-all: buildcss buildlist
+all: buildcss tile_list.json
 	./buildcss
 	mv *.css public/
 
-test: buildlist
-	./buildlist
+test: tile_list.json
+
+tile_list.json: buildlist
+	./buildlist > tile_list.json
 	
 buildcss: rltiles main.cc
 	g++ main.cc *.o -o buildcss
