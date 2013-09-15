@@ -60,9 +60,13 @@ int main(void)
 {
     cout << "{";
     write_main_css();
+    cout << ",";
     write_player_css();
+    cout << ",";
     write_floor_css();
+    cout << ",";
     write_wall_css();
+    cout << ",";
     write_feat_css();
     cout << "}";
     return 0;
