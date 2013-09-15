@@ -1,6 +1,8 @@
 http = require 'http'
 express = require('express')
 path = require('path')
+
+tile_list = require './tile_list.json'
 app = express()
 
 toJS = (obj) -> return JSON.stringify(obj)
@@ -12,7 +14,8 @@ app.use (req, res, next) -> res.locals.pretty = true; next()
 app.use(app.router)
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.get '/', (req, res) -> res.render 'index.jade'
+app.get '/', (req, res) ->
+  res.render 'index.jade', { tile_list: toJS(tile_list) }
 
 http.createServer(app).listen port, ->
   console.log("Listening on " + port)
