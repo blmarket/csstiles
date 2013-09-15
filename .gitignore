@@ -2,3 +2,5 @@ node_modules
 *.css
 public/*.png
 public/*.css
+buildlist
+buildcss
