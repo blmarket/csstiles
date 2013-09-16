@@ -3,16 +3,6 @@ board = [
   [ ['floor floor_demonic_lightgray_7', 'player demon_wings_2', 'player demon_body_5', 'player demon_head_13'], ['feat dngn_tree_2'] ]
 ]
 
-genBoard = (sx, sy, floors) ->
-  len = floors.length
-
-  ret = new Array(sx)
-  for i in [0...sx]
-    ret[i] = new Array(sy)
-    for j in [0...sy]
-      ret[i][j] = [ floors[Math.floor(Math.random() * len)] ]
-  return ret
-
 drawBoard = (board) ->
   table = d3.select('#board').append('table')
   table.attr 'class', 'tile'
@@ -36,21 +26,44 @@ showTiles = ->
 angular.module 'csstiles', []
 
 TilesCtrl = ($scope) ->
+  genBoard = (sx, sy, floors) ->
+    len = floors.length
+
+    ret = new Array(sx)
+    for i in [0...sx]
+      ret[i] = new Array(sy)
+      for j in [0...sy]
+        ret[i][j] = [ floors[Math.floor(Math.random() * len)] ]
+    return ret
+
+  updateBoard = ->
+    $scope.board = genBoard(20, 20, [
+      'floor floor_grass'
+      'floor floor_grass_1'
+      'floor floor_grass_2'
+      'floor floor_grass_3'
+      'floor floor_grass_4'
+      'floor floor_grass_5'
+      'floor floor_grass_6'
+      'floor floor_grass_7'
+      'floor floor_grass_8'
+      'floor floor_grass_9'
+      'floor floor_grass_10'
+      'floor floor_grass_11'
+    ])
+    return
+
   $scope.tile_keys = [ 'floor', 'wall', 'feat' ]
   $scope.tile_list = tile_list
-
-  drawBoard genBoard(10, 10, [
-    'floor floor_grass'
-    'floor floor_grass_1'
-    'floor floor_grass_2'
-    'floor floor_grass_3'
-    'floor floor_grass_4'
-    'floor floor_grass_5'
-    'floor floor_grass_6'
-    'floor floor_grass_7'
-    'floor floor_grass_8'
-    'floor floor_grass_9'
-    'floor floor_grass_10'
-    'floor floor_grass_11'
-  ])
+  $scope.board = [[[]]]
+  $scope.updateBoard = updateBoard
+  $scope.curSel = null
+  $scope.updateSelection = (x, y) -> $scope.curSel = [x, y]
+  $scope.applyTile = (key, item) ->
+    return unless $scope.curSel?
+    [x, y] = $scope.curSel
+    clsName = "#{key} #{item}"
+    $scope.board[x][y] = [ clsName ]
+    return
+  updateBoard()
   return

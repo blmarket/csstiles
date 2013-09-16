@@ -4,6 +4,10 @@ html(ng-app='csstiles')
     meta(charset='utf-8')
     title d3tiles
 
+    style(type='text/css')
+      table td:hover {
+        background-color: black;
+      }
     link(rel='stylesheet', href='/basic.css')
     link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css')
     link(rel='stylesheet', href='/feat.css')
@@ -21,11 +25,19 @@ html(ng-app='csstiles')
       var tile_list = !{tile_list}
     script(src='/lib/main.js')
   body
+    table
+      tr
+        td: p unselected
+        td.selected: p selected
     .container(ng-controller='TilesCtrl')
       p Cloudflare 짱짱.
-      #board
+      table#board.tile
+        tr(ng-repeat="row in board", ng-init="xi=$index")
+          td(ng-repeat="cell in row", ng-click="updateSelection(xi, $index)")
+            div(ng-repeat="prop in cell", class="{{prop}}")
       input#filter(ng-model='tileFilterText')
+      a.btn(ng-click='updateBoard()') Refresh
       table#tiles.tile
         tr(ng-repeat="key in tile_keys")
           td(ng-repeat="item in tile_list[key] | filter:tileFilterText")
-            div(class="{{key}} {{item}}")
+            div(class="{{key}} {{item}}", ng-click="applyTile(key, item)")
