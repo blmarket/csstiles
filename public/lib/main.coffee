@@ -33,18 +33,24 @@ showTiles = ->
       .append('td').append('div').attr 'class', (d) -> "#{key} #{d}"
   return
 
-drawBoard genBoard(10, 10, [
-  'floor floor_grass'
-  'floor floor_grass_1'
-  'floor floor_grass_2'
-  'floor floor_grass_3'
-  'floor floor_grass_4'
-  'floor floor_grass_5'
-  'floor floor_grass_6'
-  'floor floor_grass_7'
-  'floor floor_grass_8'
-  'floor floor_grass_9'
-  'floor floor_grass_10'
-  'floor floor_grass_11'
-])
-showTiles()
+angular.module 'csstiles', []
+
+TilesCtrl = ($scope) ->
+  $scope.tile_keys = [ 'floor', 'wall', 'feat' ]
+  $scope.tile_list = tile_list
+
+  drawBoard genBoard(10, 10, [
+    'floor floor_grass'
+    'floor floor_grass_1'
+    'floor floor_grass_2'
+    'floor floor_grass_3'
+    'floor floor_grass_4'
+    'floor floor_grass_5'
+    'floor floor_grass_6'
+    'floor floor_grass_7'
+    'floor floor_grass_8'
+    'floor floor_grass_9'
+    'floor floor_grass_10'
+    'floor floor_grass_11'
+  ])
+  return

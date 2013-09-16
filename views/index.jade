@@ -1,5 +1,5 @@
 doctype 5
-html
+html(ng-app='csstiles')
   head
     meta(charset='utf-8')
     title d3tiles
@@ -12,16 +12,20 @@ html
     link(rel='stylesheet', href='/player.css')
     link(rel='stylesheet', href='/wall.css')
     // angular should be in head element.
+    script(src='/contrib/coffee-script.js')
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js').
-    script(src='/contrib/angular.min.js')
+    script(src='/contrib/angular.js')
     script(src='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js')
     script(src='//cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js')
-    script(src='/contrib/coffee-script.js')
-  body
-    .container
-      p Cloudflare 짱짱.
-      #board
-      #tiles
     script(type='text/javascript').
       var tile_list = !{tile_list}
-    script(type='text/coffeescript', src='/lib/main.coffee')
+    script(src='/lib/main.js')
+  body
+    .container(ng-controller='TilesCtrl')
+      p Cloudflare 짱짱.
+      #board
+      input#filter(ng-model='tileFilterText')
+      table#tiles.tile
+        tr(ng-repeat="key in tile_keys")
+          td(ng-repeat="item in tile_list[key] | filter:tileFilterText")
+            div(class="{{key}} {{item}}")
