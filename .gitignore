@@ -1,6 +1,6 @@
 node_modules
 *.css
-public/*.png
-public/*.css
+public/main.png
+public/main.css
 buildlist
 buildcss
