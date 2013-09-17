@@ -1,0 +1,1 @@
+coffee -p --bare main.coffee > main.js
