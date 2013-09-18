@@ -53,12 +53,10 @@ TilesCtrl = ($scope, $resource) ->
     ])
     return
 
-  applyTile = (key, item) ->
+  setSelection = (category, name) -> $scope.curSel = "#{category} #{name}"
+  changeCell = (x, y) ->
     return unless $scope.curSel?
-    [x, y] = $scope.curSel
-    clsName = "#{key} #{item}"
-    $scope.board[x][y] = [ clsName ]
-    return
+    $scope.board[x][y] = [ $scope.curSel ]
 
   Board = $resource '/1/board' # useless global variable except save/load
   save = ->
@@ -74,8 +72,8 @@ TilesCtrl = ($scope, $resource) ->
   $scope.board = [[[]]]
   $scope.updateBoard = updateBoard
   $scope.curSel = null
-  $scope.updateSelection = (x, y) -> $scope.curSel = [x, y]
-  $scope.applyTile = applyTile
+  $scope.setSelection = setSelection
+  $scope.changeCell = changeCell
   $scope.save = save
   $scope.load = load
 
