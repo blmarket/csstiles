@@ -18,6 +18,7 @@ simpleMiddleware = (func, param_list) ->
 setRoutes = (app) ->
   app.get '/', (req, res) -> res.render 'index.jade', { tile_list: tile_list }
   app.post '/1/board', simpleMiddleware(models.saveMap, [ 'user', 'board' ])
+  app.get '/1/board', simpleMiddleware(models.loadMap, [ 'user' ])
   return
 
 module.exports.setRoutes = setRoutes

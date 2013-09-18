@@ -60,11 +60,14 @@ TilesCtrl = ($scope, $resource) ->
     $scope.board[x][y] = [ clsName ]
     return
 
+  Board = $resource '/1/board' # useless global variable except save/load
   save = ->
-    Board = $resource '/1/board'
     data = new Board { user: 'me', board: $scope.board }
     data.$save()
-  load = -> console.log 'load'
+  load = ->
+    board = Board.get { user: 'me' }, ->
+      console.log board
+      $scope.board = board.board
 
   $scope.tile_keys = [ 'floor', 'wall', 'feat' ]
   $scope.tile_list = tile_list
