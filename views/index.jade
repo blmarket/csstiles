@@ -19,24 +19,24 @@ html(ng-app='csstiles')
     script(src='/contrib/coffee-script.js')
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js').
     script(src='/contrib/angular.js')
+    script(src='/contrib/angular-resource.min.js')
     script(src='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js')
     script(src='//cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js')
     script(type='text/javascript').
       var tile_list = !{tile_list}
     script(src='/lib/main.js')
   body
-    table
-      tr
-        td: p unselected
-        td.selected: p selected
     .container(ng-controller='TilesCtrl')
-      p Cloudflare 짱짱.
+      a.btn.btn-primary(ng-click='save()') Save
+      a.btn.btn-primary(ng-click='load()') Load
+      a.btn.btn-default(disabled='disabled') Undo
+      a.btn.btn-default(disabled='disabled') Redo
       table#board.tile
         tr(ng-repeat="row in board", ng-init="xi=$index")
           td(ng-repeat="cell in row", ng-click="updateSelection(xi, $index)")
             div(ng-repeat="prop in cell", class="{{prop}}")
       input#filter(ng-model='tileFilterText')
-      a.btn(ng-click='updateBoard()') Refresh
+      a.btn.btn-default(ng-click='updateBoard()') Refresh
       table#tiles.tile
         tr(ng-repeat="key in tile_keys")
           td(ng-repeat="item in tile_list[key] | filter:tileFilterText")
