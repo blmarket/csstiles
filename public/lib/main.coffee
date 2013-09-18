@@ -23,9 +23,9 @@ showTiles = ->
       .append('td').append('div').attr 'class', (d) -> "#{key} #{d}"
   return
 
-angular.module 'csstiles', []
+angular.module 'csstiles', [ 'ngResource' ]
 
-TilesCtrl = ($scope) ->
+TilesCtrl = ($scope, $resource) ->
   genBoard = (sx, sy, floors) ->
     len = floors.length
 
@@ -53,17 +53,28 @@ TilesCtrl = ($scope) ->
     ])
     return
 
+  applyTile = (key, item) ->
+    return unless $scope.curSel?
+    [x, y] = $scope.curSel
+    clsName = "#{key} #{item}"
+    $scope.board[x][y] = [ clsName ]
+    return
+
+  save = ->
+    Board = $resource '/1/board'
+    data = new Board { user: 'me', board: $scope.board }
+    data.$save()
+  load = -> console.log 'load'
+
   $scope.tile_keys = [ 'floor', 'wall', 'feat' ]
   $scope.tile_list = tile_list
   $scope.board = [[[]]]
   $scope.updateBoard = updateBoard
   $scope.curSel = null
   $scope.updateSelection = (x, y) -> $scope.curSel = [x, y]
-  $scope.applyTile = (key, item) ->
-    return unless $scope.curSel?
-    [x, y] = $scope.curSel
-    clsName = "#{key} #{item}"
-    $scope.board[x][y] = [ clsName ]
-    return
+  $scope.applyTile = applyTile
+  $scope.save = save
+  $scope.load = load
+
   updateBoard()
   return

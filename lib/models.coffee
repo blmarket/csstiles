@@ -34,11 +34,13 @@ test__getOrCreate = ->
 
 loadMap = (user, cb) -> getOrCreate user, cb
 saveMap = (user, board, cb) ->
+  console.log user
+  console.log board
   getOrCreate user, (err, res) ->
     return cb(err) if err?
     res.board = board
     res.save()
-    cb null
+    cb null, null
     return
   return
 
