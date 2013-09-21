@@ -1,20 +1,20 @@
-table.tile {
-    padding: 0px;
-    border-spacing: 0px;
-    border: 0px;
-    border-collapse: collapse;
+table.tile { 
+    padding: 0px; 
+    border-spacing: 0px; 
+    border: 0px; 
+    border-collapse: collapse; 
 }
 
 table.tile th,tr,td { padding: 0px; }
 
-table.tile td {
+td { 
     display: inline-block;
     position: relative;
     width: 32px;
     height: 32px;
 }
 
-table.tile td div {
+td div {
     position: absolute;
     left: 0px;
     top: 0px;
